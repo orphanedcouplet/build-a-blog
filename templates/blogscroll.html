@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Blog Entries</h1>
+
+    <hr />
+
+    {% if entries|length == 0 %}
+        <p>No blog entries yet.</p>
+
+    {% else %}
+
+    <ul>
+        {% for entry in entries %}
+        <li>
+            {{blog.title}}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+
+    <hr />
+
+    <form method="post">
+        <label>
+            Title:
+            <input type="text" name="title" />
+        </label>
+        <label>
+            Body text:
+            <textarea name="body">
+                Write your blog entry!
+            </textarea>
+        </label>
+        <input type="submit" value="Blog It!" />
+    </form>
+
+    
+{% endblock %}
