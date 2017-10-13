@@ -19,12 +19,36 @@ class Blog(db.Model):
         self.title = title
         self.body = body
 
-@app.route("/blog", methods=["POST", "GET"])
+@app.route("/blog", methods=["GET"])
 def index():
     
-    entries = Blog.query.order_by(desc(Blog.id)).all()
+    entry_id = request.args.get("id")
 
-    return render_template("blog.html", title="The Blog", entries=entries)
+    if entry_id:
+        # how do I access the title of the blog object already created <IN THE DATABASE> at id=[num]?
+        # <> : how do i query the database for id=[num] and related info?
+        blog_entry = Blog.query.filter_by(id=entry_id).first()
+        entry_title = blog_entry.title
+        entry_body = blog_entry.body
+
+        return render_template("blog-entry.html", entry_title=entry_title, entry_body=entry_body)
+
+    else:
+        entries = Blog.query.order_by(desc(Blog.id)).all()
+        return render_template("blog.html", title="The Blog", entries=entries)
+
+
+    # TODO handle GET request with query params
+    # (go to individual blog-entry template)
+
+    # URL format: ./blog?id=6
+    # GET request param: form_value = request.args.get("param_name")
+    # boils down to: /action_page?form_value={{request.args.get("param_name")}}
+    # so: /blog?id={{num}}
+    # id = request.args.get("num")
+
+
+
 
 @app.route("/newpost", methods=["POST", "GET"])
 def new_post():
