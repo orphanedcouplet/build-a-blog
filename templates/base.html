@@ -2,11 +2,29 @@
 <html>
     <head>
         <title>{{title}}</title>
+        <style>
+            .error {
+                color: red;
+            }
+        </style>
     </head>
     <body>
+        <header>
+            <nav>
+                <a href="/blog">blog</a>
+                <a href="/newpost">post a new entry</a>
+            </nav>
+        </header>
+        <hr />
 
         {% block content %}
         {% endblock %}
 
+        <footer>
+            <nav>
+                <a href="/blog">blog</a>
+                <a href="/newpost">post a new entry</a>
+            </nav>
+        </footer>
     </body>
 </html>

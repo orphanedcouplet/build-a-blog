@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form method="post">
+        <label>
+            Title:
+            <input type="text" name="title" />
+            <span class="error">{{entry_title_error}}</span>
+        </label>
+        <label>
+            Body text:
+            <input type="text" name="body">
+                
+            </input>
+            <span class="error">{{entry_body_error}}</span>
+        </label>
+        <input type="submit" value="Blog It!" />
+    </form>
+
+{% endblock %}
