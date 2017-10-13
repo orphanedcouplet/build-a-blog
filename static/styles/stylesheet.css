@@ -1,3 +1,7 @@
 .error {
     color: red;
 }
+
+p {
+    font-family: sans-serif;
+}
